@@ -1,9 +1,10 @@
 import Head from 'next/head'
-// import Image from 'next/image'
+import Image from 'next/image'
+import DazedText from '../components/DazedText'
 
 export default function Home() {
   return (
-    <div className='w-full bg-[url("/images/bg.svg")] bg-fixed bg-no-repeat'>
+    <div className='w-full'>
       <Head>
         <title>Social Eye</title>
         <meta
@@ -12,22 +13,13 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <div className='w-full h-full fixed top-0' style={{ zIndex: -1 }}>
-        <Image
-          src="/images/noise.png"
-          alt="noise"
-          fill
-          style={{ objectFit: 'cover' }}
-        />
-      </div> */}
-      <h1 className="text-fuchsia-300 text-[10rem] font-black z-10">Social Eye</h1>
-      <h1 className="text-fuchsia-300 text-[10rem] font-black">Social Eye 2</h1>
-      <h1 className="text-fuchsia-300 text-[10rem] font-black">Social Eye 3</h1>
-      <h1 className="text-fuchsia-300 text-[10rem] font-black">Social Eye 4</h1>
-      <h1 className="text-fuchsia-300 text-[10rem] font-black">Social Eye 5</h1>
-      <h1 className="text-fuchsia-300 text-[10rem] font-black">Social Eye 6</h1>
-      <h1 className="text-fuchsia-300 text-[10rem] font-black">Social Eye 7</h1>
-      <h1 className="text-fuchsia-300 text-[10rem] font-black">Social Eye 8</h1>
-    </div >
+      <div className='w-full h-screen flex flex-col items-center gap-10 justify-center'>
+        <div className='w-40 h-40 relative'>
+          <Image src="/images/eye.svg" alt="Eye" fill style={{ objectFit: 'contain' }} />
+        </div>
+        {/* <h1 className='text-[8rem] text-[#36028F]'>Social Eye</h1> */}
+        <DazedText>Social Eye</DazedText>
+      </div>
+    </div>
   )
 }
