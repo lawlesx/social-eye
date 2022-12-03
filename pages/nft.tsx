@@ -37,7 +37,7 @@ const Nft: FC = () => {
           </div>
         </div>
         <div className="col-span-5 flex flex-wrap items-start justify-center gap-14 py-14 w-2/3 mx-auto overflow-y-auto">
-          {[...Array(4).keys()].map((_, i) => (
+          {[0, 1, 2, 3].map((_, i) => (
             <div
               className="rounded-xl border-2 border-black w-[18rem] overflow-hidden"
               style={{ aspectRatio: '1/1' }}
