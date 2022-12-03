@@ -23,6 +23,51 @@ const Nft: FC = () => {
           Go back
         </button>
       </div>
+      <div className="grid grid-cols-7 w-full h-3/4">
+        {/* ------------------------------ Profile Image ----------------------------- */}
+        <div className="col-span-2 flex flex-col items-center">
+          <div className="w-[14rem] h-[18rem] rounded-xl border-4 border-black -translate-y-[5rem] relative overflow-hidden">
+            <Image
+              src="/images/profile.png"
+              alt="Profile"
+              fill
+              style={{ objectFit: 'cover' }}
+              className="scale-105"
+            />
+          </div>
+        </div>
+        <div className="col-span-5 flex flex-wrap items-start justify-center gap-14 py-14 w-2/3 mx-auto overflow-y-auto">
+          {[...Array(4).keys()].map((_, i) => (
+            <div
+              className="rounded-xl border-2 border-black w-[18rem] overflow-hidden"
+              style={{ aspectRatio: '1/1' }}
+              key={i}
+            >
+              <div className="w-full h-[85%] relative">
+                <Image
+                  src="/images/BoredApe.png"
+                  alt="Bored Apes"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+              <h1 className="w-full h-[15%] bg-[#C6C1FF] px-2 text-sm font-bold flex items-center border-t-2 border-black truncate">
+                Invisible Friends{' '}
+              </h1>
+            </div>
+          ))}
+          <div className="flex items-center justify-between px-10 w-full">
+            <button className="font-bold text-sm flex items-center gap-2 bg-[#F290E7] px-4 py-2 rounded-full">
+              <NavArrowIcon className="w-6 h-6" direction="prev" />
+              Previous
+            </button>
+            <button className="font-bold text-sm flex items-center gap-2 bg-[#F290E7] px-4 py-2 rounded-full">
+              Next
+              <NavArrowIcon className="w-6 h-6" direction="next" />
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
