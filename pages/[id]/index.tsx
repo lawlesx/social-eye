@@ -3,6 +3,7 @@ import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { dehydrate, QueryClient, useQuery } from 'react-query'
+import BgImages from '../../components/BgImages'
 import DazedText from '../../components/DazedText'
 import { Profile } from '../../helpers/interface'
 
@@ -15,12 +16,14 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const handle = query.id
 
   const queryClient = new QueryClient()
-  await queryClient.prefetchQuery(['profile', handle], () => getProfile(handle as string))
+  await queryClient.prefetchQuery(['profile', handle], () =>
+    getProfile(handle as string)
+  )
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClient)
-    }
+      dehydratedState: dehydrate(queryClient),
+    },
   }
 }
 
@@ -34,15 +37,24 @@ const Id: NextPage = () => {
     }
   }>(['profile', id], () => getProfile(id as string))
 
+  console.log(data)
+
   if (isLoading) {
-    return <div className='h-screen w-full flex items-center justify-center'>
-      <DazedText className='scale-[0.5]'>Loading...</DazedText>
-    </div>
+    return (
+      <div className="h-screen w-full flex items-center justify-center">
+        <DazedText className="scale-[0.5]">Loading...</DazedText>
+      </div>
+    )
   }
 
   return (
-    <div className='h-screen w-full flex items-center justify-center'>
-      <DazedText className='scale-[0.5]'>Loading...</DazedText>
+    <div className='w-full bg-[url("/images/bg-dark.svg")] bg-fixed bg-no-repeat relative bg-cover'>
+      <BgImages hideArrow hideDiamond />
+      <div className="h-screen w-full flex items-center justify-center relative">
+        <DazedText>{
+          data?.data.profile?.name
+        }</DazedText>
+      </div>
     </div>
   )
 }
