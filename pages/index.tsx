@@ -1,17 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import DazedText from '../components/DazedText'
-import axios from "axios"
-import { useQuery } from 'react-query'
+import { useState } from 'react'
+import Link from 'next/link'
 
 export default function Home() {
-  const { data } = useQuery('profile', () => axios.get('/api/profile', {
-    params: {
-      handle: 'yoginth.lens'
-    }
-  }).then(res => res.data))
-
-  console.log('Profile', data);
+  const [handle, setHandle] = useState('')
 
   return (
     <div className='w-full'>
@@ -38,8 +32,8 @@ export default function Home() {
         <DazedText>Social Eye</DazedText>
         <p className='font-light text-2xl w-2/3 text-center text-gray-800 py-4'>Integer tincidunt amet integer nunc sit pellentesque urna vestibulum. Enim amet sit sagittis lacus.</p>
         <div className='w-3/5 h-14 rounded-full flex items-center justify-between border-2 border-black my-4'>
-          <input className='outline-none h-full font-light text-gray-600 text-2xl placeholder:text-gray-500 w-full bg-transparent px-8' placeholder='e.g adam.lens' />
-          <button className='w-1/3 h-full bg-[#B39AFF] text-black font-normal hover:bg-[#a384fe] hover:text-white transition-colors ease-in-out text-xl rounded-full outline outline-2 outline-black'>Search</button>
+          <input onChange={(e) => setHandle(e.target.value)} className='outline-none h-full font-light text-gray-600 text-2xl placeholder:text-gray-500 w-full bg-transparent px-8' placeholder='e.g adam.lens' />
+          <Link href={`/${handle}`} className='w-1/3 flex items-center justify-center h-full bg-[#B39AFF] text-black font-normal hover:bg-[#a384fe] hover:text-white transition-colors ease-in-out text-xl rounded-full outline outline-2 outline-black'>Search</Link>
         </div>
       </div>
     </div>
