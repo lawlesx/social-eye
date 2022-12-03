@@ -6,6 +6,7 @@ import { dehydrate, QueryClient, useQuery } from 'react-query'
 import BgImages from '../../components/BgImages'
 import CreatorsRing from '../../components/CreatorsRing'
 import DazedText from '../../components/DazedText'
+import FollowersRing from '../../components/FollowersRing'
 import NavArrowIcon from '../../components/NavArrowIcon'
 import { Profile } from '../../helpers/interface'
 
@@ -53,12 +54,18 @@ const Id: NextPage = () => {
     <div className='w-full bg-[url("/images/bg-dark.svg")] bg-fixed bg-no-repeat relative bg-cover'>
       <BgImages hideArrow hideDiamond />
       <div className="h-screen w-full flex items-center justify-center relative">
-        <button onClick={() => router.back()} className="font-bold text-sm flex items-center gap-2 bg-[#F290E7] px-4 py-2 rounded-full absolute top-10 left-10">
+        <button
+          onClick={() => router.back()}
+          className="font-bold text-sm flex items-center gap-2 bg-[#F290E7] px-4 py-2 rounded-full absolute top-10 left-10"
+        >
           <NavArrowIcon className="w-6 h-6" direction="prev" />
           Back
         </button>
         <div>
           <CreatorsRing image={data.data.profile.picture.original.url} />
+          <div className={`absolute top-[${Math.random() * 100}] left-[${Math.random() * 100}]`}>
+            <FollowersRing image={data.data.profile.picture.original.url} />
+          </div>
         </div>
       </div>
     </div>
