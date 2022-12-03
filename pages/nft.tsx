@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 
 const Nft: FC = () => {
   return (
-    <div className='h-screen'>
+    <div className="h-screen">
       <Head>
         <title>Social Eye | NFT</title>
         <meta
@@ -12,7 +12,8 @@ const Nft: FC = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      Nft</div>
+      Nft
+    </div>
   )
 }
 

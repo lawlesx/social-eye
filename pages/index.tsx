@@ -23,6 +23,13 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Image src="/images/sun.svg" alt="Sun" width={250} height={250} className="absolute left-20" />
+      <Image src="/images/gear.svg" alt="Gear" width={65} height={65} className="absolute left-0 top-40" />
+      <Image src="/images/flower.svg" alt="Flower" width={180} height={180} className="absolute left-0 bottom-10" />
+      <Image src="/images/PinkSparkle.svg" alt="Pink Sparkle" width={50} height={50} className="absolute right-[10rem] top-10" />
+      <Image src="/images/ColorArrow.svg" alt="Color Arrow" width={80} height={80} className="absolute left-[17rem] top-[55%]" />
+      <Image src="/images/GoldDiamond.svg" alt="Gold Diamond" width={65} height={65} className="absolute right-[20rem] top-[40%]" />
+      <Image src="/images/BlueYellowSparkle.svg" alt="Blue Yellow sparkle" width={40} height={40} className="absolute right-[5rem] top-40" />
       <div className='w-full h-screen flex flex-col items-center gap-4 justify-start pt-10'>
         <div className='w-[15rem] h-[15rem] relative'>
           <Image src="/images/eye.svg" alt="Eye" fill style={{ objectFit: 'contain' }} />
