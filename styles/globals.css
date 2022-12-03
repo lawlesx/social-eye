@@ -8,49 +8,48 @@
   box-sizing: border-box;
 }
 
-
 @font-face {
-  font-family: "Unbounded";
-  src: url("/fonts/Unbounded-Black.woff2") format("woff2");
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded-Black.woff2') format('woff2');
   font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Unbounded";
-  src: url("/fonts/Unbounded-Bold.woff2") format("woff2");
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Unbounded";
-  src: url("/fonts/Unbounded-Medium.woff2") format("woff2");
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Unbounded";
-  src: url("/fonts/Unbounded-Regular.woff2") format("woff2");
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Unbounded";
-  src: url("/fonts/Unbounded-Light.woff2") format("woff2");
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded-Light.woff2') format('woff2');
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Unbounded";
-  src: url("/fonts/Unbounded-ExtraLight.woff2") format("woff2");
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded-ExtraLight.woff2') format('woff2');
   font-weight: 100;
   font-style: normal;
 }
 
-h1,h2,h3,a,p {
-  font-family: "Unbounded";
+* {
+  font-family: 'Unbounded';
 }
