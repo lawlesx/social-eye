@@ -14,7 +14,7 @@ const handler = async (
     const { handle } = req.query
 
     const response = await axios
-      .get('/membership/revenue' + '?' + 'handle=' + handle)
+      .get('/profile/data' + '?' + 'handle=' + handle)
       .then((res) => res.data)
 
     return res.status(200).json(response)

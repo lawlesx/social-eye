@@ -1,8 +1,23 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect } from 'react'
 import DazedText from '../components/DazedText'
+import axios from "axios"
 
 export default function Home() {
+  // TODO: Remove
+  useEffect(() => {
+    const profile = axios.get('/api/profile', {
+      params: {
+        handle: 'yoginth.lens'
+      }
+    }).then(res => {
+      console.log('Res', res)
+    })
+
+    console.log('Profile', profile)
+  })
+
   return (
     <div className='w-full'>
       <Head>
