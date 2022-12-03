@@ -1,22 +1,17 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect } from 'react'
 import DazedText from '../components/DazedText'
 import axios from "axios"
+import { useQuery } from 'react-query'
 
 export default function Home() {
-  // TODO: Remove
-  useEffect(() => {
-    const profile = axios.get('/api/profile', {
-      params: {
-        handle: 'yoginth.lens'
-      }
-    }).then(res => {
-      console.log('Res', res)
-    })
+  const { data } = useQuery('profile', () => axios.get('/api/profile', {
+    params: {
+      handle: 'yoginth.lens'
+    }
+  }).then(res => res.data))
 
-    console.log('Profile', profile)
-  })
+  console.log('Profile', data);
 
   return (
     <div className='w-full'>
