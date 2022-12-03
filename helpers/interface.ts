@@ -29,7 +29,7 @@ export interface Profile {
   bio: string
   picture: Picture
   handle: string
-  coverPicture: CoverPicture
+  coverPicture?: CoverPicture
   ownedBy: string
   stats: Stats
 }

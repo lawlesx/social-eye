@@ -1,62 +1,54 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
+import { Profile } from '../../helpers/interface'
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Profile | { error: string }>
+) => {
   if (req.method !== 'GET') {
     res.status(405).end()
     return
   }
 
   try {
+    const { address } = req.query
+
     const query = `{
-      following(request: {address: "0x3A5bd1E37b099aE3386D13947b6a90d97675e5e3", limit: 10 }) {
+      following(request: {address: "${address}", limit: 10 }) {
         items {
-            profile {
-              id
-              name
-              bio
-              metadata
-              handle
-              picture {
-                ... on NftImage {
-                  contractAddress
-                  tokenId
-                  uri
-                  verified
-                }
-                ... on MediaSet {
-                  original {
-                    url
-                    width
-                    height
-                    mimeType
-                  }
-                  medium {
-                    url
-                    width
-                    height
-                    mimeType
-                  }
-                  small {
-                    url
-                    width
-                    height
-                    mimeType
-                  }
-                }
+          profile {
+            id
+            name
+            bio
+            handle
+            picture {
+              ... on NftImage {
+                contractAddress
+                tokenId
+                uri
+                verified
               }
-              ownedBy
-              stats {
-                totalFollowers
-                totalFollowing
+              ... on MediaSet {
+                original {
+                  url
+                  width
+                  height
+                  mimeType
+                }
               }
             }
+            ownedBy
+            stats {
+              totalFollowers
+              totalFollowing
+            }
           }
-          pageInfo {
-            prev
-            next
-            totalCount
-          }
+        }
+        pageInfo {
+          prev
+          next
+          totalCount
         }
       }
     }`

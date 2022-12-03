@@ -6,7 +6,6 @@ import { dehydrate, QueryClient, useQuery } from 'react-query'
 import BgImages from '../../components/BgImages'
 import CreatorsRing from '../../components/CreatorsRing'
 import DazedText from '../../components/DazedText'
-import FollowersRing from '../../components/FollowersRing'
 import NavArrowIcon from '../../components/NavArrowIcon'
 import { Profile } from '../../helpers/interface'
 
@@ -38,9 +37,37 @@ const Id: NextPage = () => {
     data: {
       profile: Profile
     }
-  }>(['profile', id], () => getProfile(id as string))
+  }>(['profile', id], () => getProfile(id as string), {
+    staleTime: 3000,
+    cacheTime: 3000,
+  })
 
-  console.log(data)
+  // console.log(data);
+
+
+  // const { data: followingData, isLoading: isFollowingDataLoading } = useQuery<{
+  //   data: {
+  //     data: {
+  //       following: {
+  //         items: Profile[]
+  //       }
+  //     }
+  //   }
+  // }>(
+  //   ['followers', id],
+  //   () =>
+  //     axios.get(`/api/following`, {
+  //       params: { address: data?.data.profile.ownedBy },
+  //     }),
+  //   {
+  //     retry: true,
+  //     retryDelay: 300,
+  //     staleTime: 3000,
+  //     cacheTime: 3000,
+  //   }
+  // )
+
+  // console.log('Followers data', followingData, isFollowingDataLoading)
 
   if (isLoading || !data) {
     return (
@@ -49,6 +76,8 @@ const Id: NextPage = () => {
       </div>
     )
   }
+
+  // const following = followingData?.data.data.following.items
 
   return (
     <div className='w-full bg-[url("/images/bg-dark.svg")] bg-fixed bg-no-repeat relative bg-cover'>
@@ -61,12 +90,11 @@ const Id: NextPage = () => {
           <NavArrowIcon className="w-6 h-6" direction="prev" />
           Back
         </button>
-        <div>
-          <CreatorsRing image={data.data.profile.picture.original.url} />
-          <div className={`absolute top-[${Math.random() * 100}] left-[${Math.random() * 100}]`}>
-            <FollowersRing image={data.data.profile.picture.original.url} />
-          </div>
-        </div>
+
+        <CreatorsRing image={data.data.profile.picture.original.url} />
+        <DazedText>{data.data.profile.name}</DazedText>
+
+
       </div>
     </div>
   )
