@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { FC } from 'react'
 import { dehydrate, QueryClient, useQuery } from 'react-query'
 import BgImages from '../../components/BgImages'
 import CreatorsRing from '../../components/CreatorsRing'
 import DazedText from '../../components/DazedText'
+import FollowersRing from '../../components/FollowersRing'
 import NavArrowIcon from '../../components/NavArrowIcon'
 import { Profile } from '../../helpers/interface'
 
@@ -42,33 +43,6 @@ const Id: NextPage = () => {
     cacheTime: 3000,
   })
 
-  // console.log(data);
-
-
-  // const { data: followingData, isLoading: isFollowingDataLoading } = useQuery<{
-  //   data: {
-  //     data: {
-  //       following: {
-  //         items: Profile[]
-  //       }
-  //     }
-  //   }
-  // }>(
-  //   ['followers', id],
-  //   () =>
-  //     axios.get(`/api/following`, {
-  //       params: { address: data?.data.profile.ownedBy },
-  //     }),
-  //   {
-  //     retry: true,
-  //     retryDelay: 300,
-  //     staleTime: 3000,
-  //     cacheTime: 3000,
-  //   }
-  // )
-
-  // console.log('Followers data', followingData, isFollowingDataLoading)
-
   if (isLoading || !data) {
     return (
       <div className="h-screen w-full flex items-center justify-center">
@@ -76,8 +50,6 @@ const Id: NextPage = () => {
       </div>
     )
   }
-
-  // const following = followingData?.data.data.following.items
 
   return (
     <div className='w-full bg-[url("/images/bg-dark.svg")] bg-fixed bg-no-repeat relative bg-cover'>
@@ -92,10 +64,59 @@ const Id: NextPage = () => {
         </button>
 
         <CreatorsRing image={data.data.profile.picture.original.url} />
-        <DazedText>{data.data.profile.name}</DazedText>
+        {/* <DazedText>{data.data.profile.name}</DazedText> */}
 
-
+        <FollowingContainer address={data.data.profile.ownedBy} />
       </div>
+    </div>
+  )
+}
+
+const FollowingContainer: FC<{ address: string }> = ({ address }) => {
+  const { data: followingData, isLoading: isFollowingDataLoading } = useQuery<{
+    data: {
+      data: {
+        following: {
+          items: { profile: Profile }[]
+        }
+      }
+    }
+  }>(
+    ['followers', address],
+    () =>
+      axios.get(`/api/following`, {
+        params: { address },
+      }),
+    {
+      retry: true,
+      retryDelay: 300,
+      staleTime: 3000,
+      cacheTime: 3000,
+    }
+  )
+
+  // console.log('Followers data', followingData, isFollowingDataLoading)
+  if (isFollowingDataLoading || !followingData) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center">
+        <DazedText className="scale-[0.5]">Loading...</DazedText>
+      </div>
+    )
+  }
+
+  // console.log(
+  //   'Followers data',
+  //   followingData.data.data.following.items[0].profile.picture.original.url
+  // )
+
+  return (
+    <div className="absolute w-full flex items-center justify-center gap-20 flex-wrap">
+      {followingData.data.data.following.items.map((item, i) => (
+        <FollowersRing
+          image={item.profile.picture.original?.url ?? '/images/BoredApe.png'}
+          key={i}
+        />
+      ))}
     </div>
   )
 }

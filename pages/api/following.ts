@@ -13,6 +13,7 @@ const handler = async (
 
   try {
     const { address } = req.query
+    console.log('Address', address)
 
     const query = `{
       following(request: {address: "${address}", limit: 10 }) {
@@ -61,7 +62,7 @@ const handler = async (
 
     return res.status(200).json(response)
   } catch (error) {
-    console.log(error)
+    console.log(error?.response?.data)
     return res.status(500).json({ error: 'Unxpected error occured' })
   }
 }

@@ -2,7 +2,6 @@
 import React, { FC } from 'react'
 
 const FollowersRing: FC<{ image: string }> = ({ image }) => {
-  const imageUrl = 'https://ipfs.io/ipfs/' + image.split('//')[1]
 
   return (
     <div className='relative'><svg className="w-[12rem] h-[12rem]" viewBox="0 0 200 200" fill="none"
@@ -75,7 +74,7 @@ const FollowersRing: FC<{ image: string }> = ({ image }) => {
     </svg>
       <div className='w-full h-full flex items-center justify-center absolute top-0'>
         <div className='w-[4.8rem] h-[4.8rem] border-8 border-[#D3EBFD] rounded-full relative overflow-hidden'>
-          <img src={imageUrl} alt='Profile' style={{ objectFit: 'cover' }} />
+          <img src={image} alt='Profile' style={{ objectFit: 'cover' }} />
         </div>
       </div>
     </div>
