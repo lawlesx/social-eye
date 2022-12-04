@@ -62,7 +62,7 @@ const handler = async (
 
     return res.status(200).json(response)
   } catch (error) {
-    console.log(error?.response?.data)
+    console.log(error)
     return res.status(500).json({ error: 'Unxpected error occured' })
   }
 }
